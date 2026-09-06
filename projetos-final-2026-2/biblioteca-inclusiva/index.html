@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<!--
+  Biblioteca Comunitária Ler para Todos
+  PROJETO-EXEMPLO — Acessibilidade e Inclusão
+  Curso de Web Design.
+
+  Este arquivo usa a MESMA estrutura dos projetos finais
+  (header / hero / cards / sobre / contato / footer), mas cada
+  trecho novo ou alterado está comentado com "A11Y:" explicando
+  QUAL problema de acessibilidade ele resolve. A ideia é que
+  vocês copiem esses padrões para os projetos das suas equipes.
+
+  "A11Y" é a abreviação usada no mercado para "acessibilidade"
+  (a + 11 letras + y).
+-->
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!--
+    A11Y: NUNCA usar maximum-scale=1 ou user-scalable=no no viewport.
+    Isso impede que uma pessoa com baixa visão dê zoom na página,
+    o que é uma barreira grave de acessibilidade.
+  -->
+  <title>Biblioteca Comunitária Ler para Todos</title>
+  <meta name="description" content="Biblioteca comunitária com acervo acessível, salas de estudo e atividades de leitura inclusiva para todas as idades." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!--
+    A11Y: "Skip link" (link de pular navegação).
+    É o primeiro item focável da página. Uma pessoa que navega só
+    pelo teclado (tecla Tab) ou usa leitor de tela consegue pular
+    direto para o conteúdo, sem precisar passar por todo o menu
+    a cada página. Fica invisível até receber foco (ver styles.css).
+  -->
+  <a href="#conteudo" class="skip-link">Pular para o conteúdo principal</a>
+
+  <header class="site-header">
+    <div class="nav">
+      <div class="logo">
+        <!-- A11Y: emoji decorativo -> aria-hidden para o leitor de tela ignorar -->
+        <span aria-hidden="true">📚</span> Biblioteca Comunitária Ler para Todos
+      </div>
+
+      <!--
+        A11Y: o botão de menu já era um <button> real no projeto original
+        (e não uma <div onclick>) — isso é ótimo, porque <button> já
+        funciona com Tab, Enter e Espaço automaticamente, sem precisar
+        de nenhum código extra. Aqui só adicionamos aria-expanded e
+        aria-controls para o leitor de tela anunciar se o menu está
+        aberto ou fechado, e qual elemento ele controla.
+      -->
+      <button
+        class="menu-toggle"
+        aria-label="Abrir menu de navegação"
+        aria-expanded="false"
+        aria-controls="menu">
+        <span aria-hidden="true">☰</span>
+      </button>
+
+      <!-- A11Y: nav com aria-label próprio, útil quando há mais de um menu na página -->
+      <ul id="menu" aria-label="Menu principal">
+        <li><a href="#inicio">Início</a></li>
+        <li><a href="#servicos">Atividades</a></li>
+        <li><a href="#acessibilidade">Acessibilidade</a></li>
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!--
+    A11Y: landmark <main> (existe só um por página).
+    Leitores de tela oferecem um atalho de teclado para "ir direto
+    ao conteúdo principal" — isso só funciona se existir uma tag <main>.
+    id="conteudo" é o destino do skip-link lá de cima.
+  -->
+  <main id="conteudo">
+
+    <section class="hero" id="inicio" aria-labelledby="hero-titulo">
+      <h1 id="hero-titulo">Biblioteca Comunitária Ler para Todos</h1>
+      <p>Um espaço de leitura pensado para todas as pessoas: acervo acessível, tecnologia assistiva e atividades para todas as idades.</p>
+      <a href="#contato" class="btn">Faça sua carteirinha</a>
+    </section>
+
+    <!-- A11Y: aria-labelledby liga a section ao h2, então o leitor de tela anuncia "região Atividades" -->
+    <section id="servicos" aria-labelledby="servicos-titulo">
+      <div class="container">
+        <h2 id="servicos-titulo">Nossas atividades</h2>
+        <p class="subtitle">Conheça o que oferecemos para a comunidade</p>
+        <div class="grid">
+          <article class="card">
+            <div class="icon" aria-hidden="true">📖</div>
+            <h3>Empréstimo de livros</h3>
+            <p>Acervo físico, digital e em áudio, sem taxas, para toda a família.</p>
+          </article>
+          <article class="card">
+            <div class="icon" aria-hidden="true">🧑‍🏫</div>
+            <h3>Oficinas de leitura</h3>
+            <p>Encontros semanais de contação de histórias e clube do livro.</p>
+          </article>
+          <article class="card">
+            <div class="icon" aria-hidden="true">💻</div>
+            <h3>Sala de estudos</h3>
+            <p>Computadores com leitor de tela e mesas adaptadas para cadeira de rodas.</p>
+          </article>
+          <article class="card">
+            <div class="icon" aria-hidden="true">🗓️</div>
+            <h3>Horário estendido</h3>
+            <p>Aberta de segunda a sábado, com horários noturnos duas vezes por semana.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!--
+      A11Y: seção dedicada aos recursos de inclusão da biblioteca. Além de
+      ser um bom conteúdo para o negócio fictício, mostra como descrever
+      recursos de acessibilidade em texto simples (sem depender só de ícones).
+    -->
+    <section id="acessibilidade" aria-labelledby="acessibilidade-titulo" style="background:#fff;">
+      <div class="container">
+        <h2 id="acessibilidade-titulo">Recursos de acessibilidade</h2>
+        <p class="subtitle">Estrutura pensada para receber todo mundo</p>
+        <div class="grid">
+          <article class="card">
+            <div class="icon" aria-hidden="true">🦯</div>
+            <h3>Livros em braile e audiolivros</h3>
+            <p>Acervo específico para pessoas com deficiência visual, com atendente treinado.</p>
+          </article>
+          <article class="card">
+            <div class="icon" aria-hidden="true">🤟</div>
+            <h3>Atendimento em Libras</h3>
+            <p>Equipe com intérprete de Libras em horários fixos, publicados no mural de entrada.</p>
+          </article>
+          <article class="card">
+            <div class="icon" aria-hidden="true">♿</div>
+            <h3>Acesso sem degraus</h3>
+            <p>Rampas, banheiro adaptado e corredores largos entre as estantes.</p>
+          </article>
+        </div>
+
+        <!--
+          A11Y: imagem informativa (não decorativa) precisa de alt descritivo.
+          Compare com os ícones acima, que são decorativos e usam aria-hidden.
+          Regra prática: se a imagem passa alguma informação, ela PRECISA de alt.
+          Se é só enfeite, ela NÃO deve ter alt (ou usar aria-hidden como os emojis acima).
+        -->
+        <figure class="figura-exemplo">
+          <img
+            src="imagem-estante.svg"
+            alt="Estante de madeira com livros coloridos organizados em duas fileiras"
+            width="400" height="240" />
+          <figcaption>Quando vocês inserirem fotos reais no projeto, escrevam o alt descrevendo a cena, não o nome do arquivo (ex: evite alt="foto1.jpg").</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="sobre" aria-labelledby="sobre-titulo">
+      <div class="container">
+        <h2 id="sobre-titulo">Sobre nós</h2>
+        <p class="subtitle" style="max-width:720px; margin-left:auto; margin-right:auto;">
+          Somos uma biblioteca comunitária mantida por voluntários, com o
+          compromisso de que ninguém fique de fora por causa de renda,
+          idade ou deficiência. Leitura é para todo mundo.
+        </p>
+      </div>
+    </section>
+
+    <section id="contato" aria-labelledby="contato-titulo" style="background:#fff;">
+      <div class="container">
+        <h2 id="contato-titulo">Fale conosco</h2>
+        <p class="subtitle">Preencha e retornaremos em breve</p>
+
+        <!--
+          A11Y: aria-labelledby liga o <form> ao título da seção, então o
+          leitor de tela anuncia "formulário, Fale conosco" ao entrar nele.
+          novalidate continua aqui porque quem valida é o nosso JavaScript
+          (assim controlamos a mensagem de erro que aparece na tela).
+        -->
+        <form class="contact" id="formContato" novalidate aria-labelledby="contato-titulo">
+          <div>
+            <!--
+              A11Y: o texto "(obrigatório)" fica dentro do <label>, visível
+              para todo mundo. Um asterisco (*) sozinho não é suficiente,
+              porque nem toda pessoa cega associa "*" a "campo obrigatório",
+              e nem toda pessoa com baixa visão enxerga o símbolo.
+            -->
+            <label for="nome">Nome completo <span class="obrigatorio">(obrigatório)</span></label>
+            <input type="text" id="nome" name="nome" required aria-required="true"
+                   autocomplete="name" placeholder="Seu nome" />
+          </div>
+          <div>
+            <label for="email">E-mail <span class="obrigatorio">(obrigatório)</span></label>
+            <input type="email" id="email" name="email" required aria-required="true"
+                   autocomplete="email" placeholder="voce@email.com" />
+          </div>
+          <div>
+            <label for="telefone">Telefone / WhatsApp</label>
+            <input type="tel" id="telefone" name="telefone" autocomplete="tel"
+                   placeholder="(00) 00000-0000" />
+          </div>
+          <div>
+            <label for="mensagem">Mensagem <span class="obrigatorio">(obrigatório)</span></label>
+            <textarea id="mensagem" name="mensagem" rows="4" required aria-required="true"
+                      placeholder="Como podemos ajudar?"></textarea>
+          </div>
+          <button type="submit" class="btn primary">Enviar mensagem</button>
+
+          <!--
+            A11Y: role="status" + aria-live="polite" faz o leitor de tela
+            avisar sozinho quando essa mensagem aparecer, sem a pessoa
+            precisar procurar na tela. "polite" espera terminar de falar
+            o que já estava sendo lido, em vez de interromper.
+          -->
+          <div class="mensagem-feedback" id="feedback" role="status" aria-live="polite"></div>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>© <span id="ano"></span> Biblioteca Comunitária Ler para Todos — Todos os direitos reservados.</p>
+    <p>Projeto-exemplo de acessibilidade — curso de Web Design.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
