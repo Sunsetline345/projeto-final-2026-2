@@ -20,8 +20,24 @@ Agendamento de banho e tosa.
 ├── index.html      # estrutura da página
 ├── styles.css      # estilos e responsividade
 ├── script.js       # interatividade
+├── imagens/        # fotos do hero, serviços e equipe
+├── videos/         # vídeo opcional para o fundo do hero
 └── README.md       # este arquivo
 ```
+
+## 🖼️ Como adicionar imagens e vídeo
+
+Crie as pastas `imagens` e `videos` dentro deste projeto. Os nomes esperados estão indicados no `index.html`:
+
+- `imagens/hero-petshop.jpg`
+- `imagens/atendimento-personalizado.jpg`
+- `imagens/profissionais.jpg`
+- `imagens/resultados.jpg`
+- `imagens/horarios.jpg`
+- `imagens/equipe-petcharm.jpg`
+- `videos/petshop-fundo.mp4` (opcional)
+
+Se o vídeo não for adicionado, o hero continua funcionando com a cor de fundo e a imagem de capa.
 
 ## ▶️ Como executar
 Basta abrir o arquivo `index.html` em qualquer navegador moderno.

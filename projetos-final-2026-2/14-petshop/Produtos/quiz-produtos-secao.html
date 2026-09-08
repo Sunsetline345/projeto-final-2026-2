@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produtos | PetCharm</title>
+    <link rel="stylesheet" href="quiz-produtos.css" />
+    <link rel="stylesheet" href="produtos.css" />
+    
+</head>
+
+<body>
+<section id="quiz-produtos">
+  <div class="container">
+    <h2>Qual produto é ideal para o seu pet?</h2>
+    <p class="subtitle">Responda 4 perguntinhas rápidas e receba uma recomendação personalizada</p>
+
+    <div class="quizp-box" id="quizpBox">
+
+      <!-- Barra de progresso -->
+      <div class="quizp-progress">
+        <div class="quizp-progress-bar" id="quizpProgressBar"></div>
+      </div>
+      <p class="quizp-step-count" id="quizpStepCount">Pergunta 1 de 4</p>
+
+      <!-- Pergunta 1 -->
+      <div class="quizp-step" data-step="1">
+        <h3>1. Qual é a necessidade principal do seu pet agora?</h3>
+        <div class="quizp-options" data-question="1">
+          <button type="button" class="quizp-option" data-scores='{"racao":2}'>Alimentação — comer bem</button>
+          <button type="button" class="quizp-option" data-scores='{"brinquedos":2}'>Diversão e estímulo</button>
+          <button type="button" class="quizp-option" data-scores='{"remedios":2}'>Saúde ou tratamento</button>
+          <button type="button" class="quizp-option" data-scores='{"trajes":2}'>Vestuário ou proteção</button>
+        </div>
+      </div>
+
+      <!-- Pergunta 2 -->
+      <div class="quizp-step" data-step="2" hidden>
+        <h3>2. Como você descreveria o momento do seu pet?</h3>
+        <div class="quizp-options" data-question="2">
+          <button type="button" class="quizp-option" data-scores='{"racao":2}'>A ração está acabando ou ele precisa de uma dieta melhor</button>
+          <button type="button" class="quizp-option" data-scores='{"brinquedos":2}'>Ele está entediado ou destruindo coisas em casa</button>
+          <button type="button" class="quizp-option" data-scores='{"remedios":2}'>Está com sintomas (coceira, mancando, vômito) ou precisa de prevenção</button>
+          <button type="button" class="quizp-option" data-scores='{"trajes":2}'>Vai sair em dia frio, evento ou passeio</button>
+        </div>
+      </div>
+
+      <!-- Pergunta 3 -->
+      <div class="quizp-step" data-step="3" hidden>
+        <h3>3. O que é mais importante pra você agora?</h3>
+        <div class="quizp-options" data-question="3">
+          <button type="button" class="quizp-option" data-scores='{"racao":1}'>Nutrição adequada à idade e porte dele</button>
+          <button type="button" class="quizp-option" data-scores='{"brinquedos":1}'>Estímulo mental e desgaste de energia</button>
+          <button type="button" class="quizp-option" data-scores='{"remedios":1}'>Orientação e cuidado com a saúde</button>
+          <button type="button" class="quizp-option" data-scores='{"trajes":1}'>Conforto e estilo no dia a dia</button>
+        </div>
+      </div>
+
+      <!-- Pergunta 4 -->
+      <div class="quizp-step" data-step="4" hidden>
+        <h3>4. Qual frase combina mais com a situação atual?</h3>
+        <div class="quizp-options" data-question="4">
+          <button type="button" class="quizp-option" data-scores='{"racao":1}'>"Preciso repor o pote de comida dele"</button>
+          <button type="button" class="quizp-option" data-scores='{"brinquedos":1}'>"Ele fica sozinho em casa e precisa se distrair"</button>
+          <button type="button" class="quizp-option" data-scores='{"remedios":1}'>"Notei algo diferente na saúde dele"</button>
+          <button type="button" class="quizp-option" data-scores='{"trajes":1}'>"Quero ele confortável e protegido lá fora"</button>
+        </div>
+      </div>
+
+      <!-- Resultado -->
+      <div class="quizp-step quizp-result" data-step="result" hidden>
+        <div class="quizp-result-icon" id="quizpResultIcon">🐾</div>
+        <h3 id="quizpResultTitle">Recomendação</h3>
+        <p id="quizpResultText"></p>
+        <div class="quizp-result-actions">
+          <button type="button" class="btn primary" id="quizpGoProdutos">Ver produtos recomendados</button>
+          <button type="button" class="btn quizp-restart" id="quizpRestart">Refazer o quiz</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+</body>
