@@ -1,5 +1,6 @@
 const API_URL = 'https://api.api-ninjas.com/v1/dogs';
 // Cole sua chave da API Ninjas entre as aspas abaixo.
+;
 const API_KEY = 'LgKsDpaMzwthRnGoyDfeCagZhdJ3AAgAPDmpOCmC';
 const buscaRaca = document.getElementById('buscaRaca');
 const seletorRaca = document.getElementById('seletorRaca');
@@ -71,66 +72,63 @@ function exibirRaca(raca) {
 }
 
 async function consultarRacas(nome = '') {
+  if (!API_KEY) {
+    mostrarStatus('A chave da API ainda não foi configurada. Abra o arquivo adocao.js e preencha a constante API_KEY.', 'error');
+    seletorRaca.disabled = true;
+    return;
+  }
+
   mostrarStatus('Consultando raças disponíveis...');
   seletorRaca.disabled = true;
-
-  const url = nome
-    ? `/api/dogs?name=${encodeURIComponent(nome)}`
-    : '/api/dogs';
+  const url = nome ? `${API_URL}?name=${encodeURIComponent(nome)}` : API_URL;
 
   try {
-    const resposta = await fetch(url);
+    const resposta = await fetch(url, { headers: { 'X-Api-Key': API_KEY } });
 
     if (!resposta.ok) {
-      throw new Error(`Servidor respondeu com status ${resposta.status}.`);
+      let detalhe = '';
+      try {
+        const erroApi = await resposta.json();
+        detalhe = erroApi.error || erroApi.message || '';
+      } catch (_) {
+        try {
+          detalhe = await resposta.text();
+        } catch (_) {}
+      }
+
+      const mensagem = detalhe
+        ? `API respondeu com status ${resposta.status}: ${detalhe}`
+        : `API respondeu com status ${resposta.status}.`;
+
+      throw new Error(mensagem);
     }
 
     const dados = await resposta.json();
-
-    racas = Array.isArray(dados)
-      ? dados.map(normalizarRaca)
-      : [];
+    racas = Array.isArray(dados) ? dados.map(normalizarRaca) : [];
 
     if (!racas.length) {
       atualizarSeletor([]);
       atualizarSugestoes([]);
       resultadoRaca.hidden = true;
-
-      mostrarStatus(
-        nome
-          ? `Nenhuma raça encontrada para “${nome}”. Tente outro nome.`
-          : 'A API não retornou raças disponíveis.',
-        'error'
-      );
-
+      mostrarStatus(nome ? `Nenhuma raça encontrada para “${nome}”. Tente outro nome.` : 'A API não retornou raças disponíveis.', 'error');
       return;
     }
 
     atualizarSeletor(racas);
     atualizarSugestoes(racas);
-
     seletorRaca.value = '0';
     exibirRaca(racas[0]);
-
-    mostrarStatus(
-      `${racas.length} raça(s) encontrada(s).`,
-      'success'
-    );
-
+    mostrarStatus(`${racas.length} raça(s) encontrada(s).`, 'success');
   } catch (erro) {
     racas = [];
-
     atualizarSeletor([]);
     atualizarSugestoes([]);
-
     resultadoRaca.hidden = true;
-
-    mostrarStatus(
-      `Não foi possível consultar a API agora. ${erro.message}`,
-      'error'
-    );
+    const detalhe = erro && erro.message ? erro.message : 'Erro desconhecido.';
+    mostrarStatus(`Não foi possível consultar a API agora. ${detalhe} Verifique a chave da API e tente novamente.`, 'error');
   }
 }
+
 function buscar() {
   const nome = buscaRaca.value.trim();
   if (nome.length < 2) {

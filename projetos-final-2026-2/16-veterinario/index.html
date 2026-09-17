@@ -19,7 +19,7 @@
   <header class="site-header">
     <div class="nav">
       <div class="logo">🐾 VetVida</div>
-      <button class="menu-toggle" aria-label="Abrir menu">☰</button>
+      <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false">☰</button>
       <ul id="menu">
         <li><a href="#inicio">Início</a></li>
         <li><a href="#servicos">Serviços</a></li>
@@ -31,9 +31,13 @@
 
   <!-- HERO: primeira impressão do site -->
   <section class="hero" id="inicio">
-    <h1>VetVida - Clínica Veterinária</h1>
-    <p>Consultas, especialidades e contato. Atendimento profissional, humano e de qualidade.</p>
+    <div class="hero-content">
+      <div class="hero-mark" aria-hidden="true">🐾</div>
+      <p class="eyebrow">Cuidado que faz a diferença</p>
+      <h1>VetVida - Clínica Veterinária</h1>
+      <p>Saúde, carinho e atendimento especializado para o seu melhor amigo.</p>
     <a href="#contato" class="btn">Agende sua avaliação</a>
+    </div>
   </section>
 
   <!-- SERVIÇOS em formato de cards -->
@@ -43,24 +47,28 @@
       <p class="subtitle">Conheça o que oferecemos para você</p>
       <div class="grid">
         <article class="card">
+          <img class="card-image" src="imagens/WhatsApp Image 2026-09-17 at 09.14.14.jpeg" alt="Consultório veterinário" />
           <div class="icon">🐾</div>
-          <h3>Atendimento personalizado</h3>
-          <p>Plano de cuidado individual conforme cada necessidade.</p>
+          <h3>Consultas veterinárias</h3>
+          <p>Avaliação completa e acompanhamento individual para cães e gatos.</p>
         </article>
         <article class="card">
+          <img class="card-image" src="imagens/WhatsApp Image 2026-09-17 at 09.14.14.jpeg" alt="Consultório" />
           <div class="icon">⭐</div>
-          <h3>Profissionais qualificados</h3>
-          <p>Equipe com formação especializada e experiência.</p>
+          <h3>Vacinação e prevenção</h3>
+          <p>Carteira de vacinação em dia e orientações para uma vida saudável.</p>
         </article>
         <article class="card">
+          <img class="card-image" src="imagens/WhatsApp Image 2026-09-17 at 09.14.14.jpeg" alt="Laboratório veterinário" />
           <div class="icon">🏆</div>
-          <h3>Resultados comprovados</h3>
-          <p>Clientes satisfeitos e depoimentos reais.</p>
+          <h3>Exames e diagnósticos</h3>
+          <p>Investigação cuidadosa para identificar e tratar cada necessidade.</p>
         </article>
         <article class="card">
+          <img class="card-image" src="imagens/WhatsApp Image 2026-09-17 at 09.14.14.jpeg" alt="Consultório veterinário" />
           <div class="icon">📅</div>
-          <h3>Horários flexíveis</h3>
-          <p>Atendimento que se encaixa na sua rotina.</p>
+          <h3>Atendimento acolhedor</h3>
+          <p>Um ambiente tranquilo para cuidar do bem-estar do seu pet.</p>
         </article>
       </div>
     </div>
@@ -69,10 +77,13 @@
   <!-- SOBRE -->
   <section id="sobre" style="background:#fff;">
     <div class="container">
+      <div class="sobre-media">
+        <div class="sobre-symbol" aria-hidden="true">🐶 🐱</div>
+      </div>
       <h2>Sobre nós</h2>
       <p class="subtitle" style="max-width:720px; margin-left:auto; margin-right:auto;">
-        Somos especialistas em pet, dedicados a oferecer a melhor
-        experiência. Trabalhamos com ética, transparência e foco em resultados.
+        Somos uma clínica veterinária dedicada a oferecer cuidado responsável,
+        atendimento acolhedor e mais qualidade de vida para cães e gatos.
       </p>
     </div>
   </section>
@@ -91,9 +102,37 @@
           <label for="email">E-mail</label>
           <input type="email" id="email" name="email" required placeholder="voce@email.com" />
         </div>
+        <div class="form-row">
+          <div>
+            <label for="petNome">Nome do pet</label>
+            <input type="text" id="petNome" name="petNome" required placeholder="Ex.: Mel" />
+          </div>
+          <div>
+            <label for="telefone">Telefone / WhatsApp</label>
+            <input type="tel" id="telefone" name="telefone" required placeholder="(00) 00000-0000" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div>
+            <label for="servico">Serviço</label>
+            <select id="servico" name="servico" required>
+              <option value="">Escolha um serviço</option>
+              <option value="Consulta veterinária">Consulta veterinária</option>
+              <option value="Vacinação">Vacinação</option>
+              <option value="Exames">Exames</option>
+              <option value="Retorno">Retorno</option>
+            </select>
+          </div>
+          <div>
+            <label for="data">Data preferida</label>
+            <input type="date" id="data" name="data" required />
+          </div>
+        </div>
         <div>
-          <label for="telefone">Telefone / WhatsApp</label>
-          <input type="tel" id="telefone" name="telefone" placeholder="(00) 00000-0000" />
+          <label for="horario">Horário disponível</label>
+          <select id="horario" name="horario" required disabled>
+            <option value="">Escolha primeiro uma data</option>
+          </select>
         </div>
         <div>
           <label for="mensagem">Mensagem</label>
@@ -101,6 +140,7 @@
         </div>
         <button type="submit" class="btn primary">Enviar mensagem</button>
         <div class="mensagem-feedback" id="feedback"></div>
+        <div class="lembrete" id="lembrete" aria-live="polite"></div>
       </form>
     </div>
   </section>

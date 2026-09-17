@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-  Sorriso Pleno Odontologia
+  Sorriso Perfeito Odontologia
   Projeto didático do curso de Web Design.
   Estrutura: header, hero, serviços (cards), sobre, contato (form), footer.
 -->
@@ -9,20 +9,22 @@
   <meta charset="UTF-8" />
   <!-- viewport torna o site responsivo no celular -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sorriso Pleno Odontologia</title>
-  <meta name="description" content="Clínica odontológica com tratamentos e equipe." />
+  <title>Sorriso Perfeito Odontologia</title>
+  <meta name="description" content="Clínica odontológica Sorriso Perfeito: cuidado, prevenção e tratamentos para o seu sorriso." />
   <link rel="stylesheet" href="styles.css" />
+  
+
 </head>
 <body>
 
   <!-- CABEÇALHO com navegação -->
   <header class="site-header">
     <div class="nav">
-      <div class="logo">🦷 Sorriso Pleno Odontologia</div>
-      <button class="menu-toggle" aria-label="Abrir menu">☰</button>
+      <div class="logo">🦷 Sorriso Perfeito</div>
+      <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false">☰</button>
       <ul id="menu">
         <li><a href="#inicio">Início</a></li>
-        <li><a href="#servicos">Serviços</a></li>
+        <li><a href="#servicos">Serviços</a></li>      
         <li><a href="#sobre">Sobre</a></li>
         <li><a href="#contato">Contato</a></li>
       </ul>
@@ -31,9 +33,13 @@
 
   <!-- HERO: primeira impressão do site -->
   <section class="hero" id="inicio">
-    <h1>Sorriso Pleno Odontologia</h1>
-    <p>Clínica odontológica com tratamentos e equipe. Atendimento profissional, humano e de qualidade.</p>
+    <div class="hero-content">
+    <div class="hero-mark" aria-hidden="true">✦</div>
+    <p class="eyebrow">Cuidado que transforma</p>
+    <h1>Sorriso Perfeito Odontologia</h1>
+    <p>Prevenção, saúde e confiança para você sorrir com tranquilidade.</p>
     <a href="#contato" class="btn">Agende sua avaliação</a>
+    </div>
   </section>
 
   <!-- SERVIÇOS em formato de cards -->
@@ -43,21 +49,26 @@
       <p class="subtitle">Conheça o que oferecemos para você</p>
       <div class="grid">
         <article class="card">
+          <!-- Troque o caminho pela foto do serviço correspondente. -->
+          <img class="card-image" src="imagens/WhatsApp Image 2026-09-17 at 09.09.14.jpeg" alt="Atendimento personalizado para um cliente" />
           <div class="icon">🦷</div>
           <h3>Atendimento personalizado</h3>
           <p>Plano de cuidado individual conforme cada necessidade.</p>
         </article>
         <article class="card">
+          <img class="card-image" src="imagens/WhatsApp Image 2026-09-17 at 09.10.13.jpeg" alt="Profissional bem posicionado" />
           <div class="icon">⭐</div>
           <h3>Profissionais qualificados</h3>
           <p>Equipe com formação especializada e experiência.</p>
         </article>
         <article class="card">
+          <img class="card-image" src="imagens/WhatsApp Image 2026-09-17 at 09.09.14 (1).jpeg" alt="Dentes perfeitos" />
           <div class="icon">🏆</div>
           <h3>Resultados comprovados</h3>
           <p>Clientes satisfeitos e depoimentos reais.</p>
         </article>
         <article class="card">
+          <img class="card-image" src="imagens/WhatsApp Image 2026-09-17 at 09.14.14.jpeg" alt="Consultório" />
           <div class="icon">📅</div>
           <h3>Horários flexíveis</h3>
           <p>Atendimento que se encaixa na sua rotina.</p>
@@ -69,14 +80,19 @@
   <!-- SOBRE -->
   <section id="sobre" style="background:#fff;">
     <div class="container">
+      <div class="sobre-media">
+        <div class="sobre-symbol" aria-hidden="true">✦</div>
+      </div>
       <h2>Sobre nós</h2>
       <p class="subtitle" style="max-width:720px; margin-left:auto; margin-right:auto;">
-        Somos especialistas em saúde, dedicados a oferecer a melhor
-        experiência. Trabalhamos com ética, transparência e foco em resultados.
+        Somos uma clínica odontológica dedicada a oferecer uma experiência acolhedora,
+        tratamentos responsáveis e resultados que valorizam a sua saúde e autoestima.
       </p>
     </div>
   </section>
 
+    </div>
+  </section>
   <!-- CONTATO com formulário -->
   <section id="contato">
     <div class="container">
@@ -91,9 +107,37 @@
           <label for="email">E-mail</label>
           <input type="email" id="email" name="email" required placeholder="voce@email.com" />
         </div>
+        <div class="form-row">
+          <div>
+            <label for="assunto">Motivo da consulta</label>
+            <input type="text" id="assunto" name="assunto" required placeholder="Ex.: avaliação" />
+          </div>
+          <div>
+            <label for="telefone">Telefone / WhatsApp</label>
+            <input type="tel" id="telefone" name="telefone" required placeholder="(00) 00000-0000" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div>
+            <label for="servico">Serviço</label>
+            <select id="servico" name="servico" required>
+              <option value="">Escolha um serviço</option>
+              <option value="Avaliação odontológica">Avaliação odontológica</option>
+              <option value="Limpeza e prevenção">Limpeza e prevenção</option>
+              <option value="Clareamento dental">Clareamento dental</option>
+              <option value="Odontologia estética">Odontologia estética</option>
+            </select>
+          </div>
+          <div>
+            <label for="data">Data preferida</label>
+            <input type="date" id="data" name="data" required />
+          </div>
+        </div>
         <div>
-          <label for="telefone">Telefone / WhatsApp</label>
-          <input type="tel" id="telefone" name="telefone" placeholder="(00) 00000-0000" />
+          <label for="horario">Horário disponível</label>
+          <select id="horario" name="horario" required disabled>
+            <option value="">Escolha primeiro uma data</option>
+          </select>
         </div>
         <div>
           <label for="mensagem">Mensagem</label>
@@ -101,15 +145,14 @@
         </div>
         <button type="submit" class="btn primary">Enviar mensagem</button>
         <div class="mensagem-feedback" id="feedback"></div>
+        <div class="lembrete" id="lembrete" aria-live="polite"></div>
       </form>
     </div>
   </section>
 
   <footer>
-    <p>© <span id="ano"></span> Sorriso Pleno Odontologia — Todos os direitos reservados.</p>
+    <p>© <span id="ano"></span> Sorriso Perfeito Odontologia — Todos os direitos reservados.</p>
     <p>Projeto educacional do curso de Web Design.</p>
   </footer>
 
   <script src="script.js"></script>
-</body>
-</html>

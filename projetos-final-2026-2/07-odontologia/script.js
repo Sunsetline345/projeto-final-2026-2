@@ -9,10 +9,41 @@ document.addEventListener('DOMContentLoaded', () => {
   const toggle = document.querySelector('.menu-toggle');
   const menu = document.getElementById('menu');
   if (toggle && menu) {
-    toggle.addEventListener('click', () => menu.classList.toggle('open'));
+    toggle.addEventListener('click', () => {
+      const aberto = menu.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', String(aberto));
+    });
     menu.querySelectorAll('a').forEach(a =>
-      a.addEventListener('click', () => menu.classList.remove('open'))
+      a.addEventListener('click', () => {
+        menu.classList.remove('open');
+        toggle?.setAttribute('aria-expanded', 'false');
+      })
     );
+  }
+
+  const data = document.getElementById('data');
+  const horario = document.getElementById('horario');
+  if (data && horario) {
+    const hoje = new Date();
+    hoje.setMinutes(hoje.getMinutes() - hoje.getTimezoneOffset());
+    data.min = hoje.toISOString().split('T')[0];
+
+    data.addEventListener('change', () => {
+      horario.replaceChildren();
+      const selecionada = new Date(`${data.value}T12:00:00`);
+
+      if (!data.value || selecionada.getDay() === 0) {
+        horario.disabled = true;
+        horario.add(new Option('Escolha um dia útil', ''));
+        return;
+      }
+
+      horario.disabled = false;
+      horario.add(new Option('Escolha um horário', ''));
+      ['08:00', '09:30', '11:00', '14:00', '15:30', '17:00'].forEach(hora =>
+        horario.add(new Option(hora, hora))
+      );
+    });
   }
 });
 
@@ -27,12 +58,13 @@ if (form) {
     // Pega valores dos campos
     const nome = form.querySelector('#nome')?.value.trim();
     const email = form.querySelector('#email')?.value.trim();
+    const assunto = form.querySelector('#assunto')?.value.trim();
     const mensagem = form.querySelector('#mensagem')?.value.trim();
 
     // Regex básico para validar e-mail
     const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email || '');
 
-    if (!nome || !emailOk || !mensagem) {
+    if (!nome || !emailOk || !assunto || !mensagem || !form.checkValidity()) {
       feedback.classList.add('erro');
       feedback.textContent = 'Por favor, preencha todos os campos corretamente.';
       return;

@@ -1,5 +1,5 @@
 /* =========================================================
-   Sorriso Pleno Odontologia
+  Sorriso Perfeito Odontologia
    Folha de estilos principal.
    Conceitos: variáveis CSS, seletores, flexbox, grid,
    responsividade, transições e hover.
@@ -7,11 +7,11 @@
 
 /* Variáveis (Custom Properties) — facilitam manter o tema */
 :root {
-  --primary: #0891b2;
-  --accent: #67e8f9;
-  --bg: #f0fbff;
-  --text: #1f2937;
-  --muted: #6b7280;
+  --primary: #087f8c;
+  --accent: #b9eee8;
+  --bg: #eaf7f6;
+  --text: #16313a;
+  --muted: #5c747b;
   --card: #ffffff;
   --radius: 14px;
   --shadow: 0 10px 30px rgba(0,0,0,.08);
@@ -41,7 +41,7 @@ img { max-width: 100%; display: block; }
 
 /* ---------- HEADER / NAV ---------- */
 header.site-header {
-  background: var(--primary);
+  background: #075e68;
   color: #fff;
   position: sticky; /* fixa ao rolar */
   top: 0;
@@ -73,11 +73,33 @@ header.site-header {
 
 /* ---------- HERO ---------- */
 .hero {
-  background: linear-gradient(135deg, var(--primary), var(--accent));
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: linear-gradient(135deg, #075e68 0%, #0b8f99 55%, #b9eee8 150%);
   color: #fff;
-  padding: 80px 20px;
+  min-height: 500px;
+  padding: 100px 20px;
   text-align: center;
 }
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.hero-overlay { z-index: -1; background: rgba(7, 94, 104, 0.18); }
+.hero-content { position: relative; z-index: 1; }
+.hero-image {
+  width: 96px;
+  height: 96px;
+  object-fit: cover;
+  margin: 0 auto 18px;
+  border: 4px solid rgba(255, 255, 255, .8);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .15);
+}
+.eyebrow { text-transform: uppercase; letter-spacing: 2px; font-size: .78rem; font-weight: 700; }
 .hero h1 { font-size: clamp(1.8rem, 4vw, 3rem); margin-bottom: 14px; }
 .hero p { font-size: 1.1rem; max-width: 640px; margin: 0 auto 26px; opacity: .95; }
 
@@ -125,9 +147,29 @@ section .subtitle {
   transition: transform .2s;
 }
 .card:hover { transform: translateY(-6px); }
+.card-image {
+  width: calc(100% + 48px);
+  height: 150px;
+  object-fit: cover;
+  margin: 0px 0px 18px;
+  background: linear-gradient(135deg, var(--accent), #ffe4ef);
+  border-radius: var(--radius);
+  border: var(--primary) 2px solid;
+}
 .card .icon { font-size: 2.2rem; margin-bottom: 10px; }
 .card h3 { color: var(--primary); margin-bottom: 8px; }
 .card p { color: var(--muted); font-size: .95rem; }
+.sobre-media {
+  max-width: 720px;
+  height: 220px;
+  margin: 0 auto 28px;
+  overflow: hidden;
+  border-radius: var(--radius);
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, #075e68, var(--accent));
+}
+.sobre-symbol { color: #fff; font-size: 5rem; }
 
 /* ---------- FORMULÁRIO ---------- */
 form.contact {
@@ -152,6 +194,11 @@ form.contact textarea {
   font-size: 1rem;
   transition: border-color .2s, box-shadow .2s;
 }
+form.contact .form-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
 form.contact input:focus,
 form.contact textarea:focus,
 form.contact select:focus {
@@ -170,6 +217,13 @@ form.contact select:focus {
   display: none;
 }
 .mensagem-feedback.erro { background: #fef2f2; color: #991b1b; }
+.lembrete {
+  padding: 12px;
+  border-radius: 10px;
+  background: #fff7ed;
+  color: #9a3412;
+  text-align: center;
+}
 
 /* ---------- FOOTER ---------- */
 footer {
@@ -183,12 +237,14 @@ footer a { color: var(--accent); text-decoration: none; }
 
 /* ---------- RESPONSIVO ---------- */
 @media (max-width: 720px) {
+  form.contact .form-row { grid-template-columns: 1fr; }
+
   .nav ul {
     display: none;
     position: absolute;
     top: 60px; left: 0; right: 0;
     flex-direction: column;
-    background: var(--primary);
+    background: #075e68;
     padding: 14px 20px;
     gap: 12px;
   }
